@@ -9,7 +9,6 @@
 		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="javascripts/paper-full.min.js"></script>
     <script type="text/paperscript" src="/javascripts/duodoodle.js" canvas="duodoodle"></script>
-
   </head>
   <body>
     <canvas id="duodoodle"></canvas>

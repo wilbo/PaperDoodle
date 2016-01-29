@@ -1,58 +1,21 @@
-// $(document).ready(function() {
-//
-//
-//
-//
-//
-//
-// });
-
 var socket = io();
 var socketId;
 
 
 // hello/goodbye to get the socket id
 
-socket.on('hello client', function() {
+socket.on('hello client', function(msg) {
 
   socketId = socket.id;
-  console.log('Hello client: ' + socketId);
+
+  console.log(msg);
   socket.emit('hello server', 'hello server!');
 
 })
 
 
-
-
-
-// our paths
+// store our path(s)
 paths = {};
-
-
-// this socket draws
-
-function onMouseDown(event) {
-
-  startPath(event.point, socketId);
-  socket.emit("startPath", event.point, socketId);
-
-}
-
-function onMouseDrag(event) {
-
-  continuePath(event.point, socketId);
-  socket.emit("continuePath", event.point, socketId);
-
-}
-
-function onMouseUp(event) {
-
-  endPath(event.point, socketId);
-  socket.emit("endPath", event.point, socketId);
-
-}
-
-
 
 
 // drawing functions
@@ -84,15 +47,44 @@ function endPath(position, socketId) {
 }
 
 
+// socket drawing
+
+function onMouseDown(event) {
+
+  startPath(event.point, socketId);
+  socket.emit("startPath", event.point, socketId);
+
+}
+
+function onMouseDrag(event) {
+
+  continuePath(event.point, socketId);
+  socket.emit("continuePath", event.point, socketId);
+
+}
+
+function onMouseUp(event) {
+
+  endPath(event.point, socketId);
+  socket.emit("endPath", event.point, socketId);
+
+}
+
+
+
+
+
+
+
 // 'other' sockets drawing
 
 socket.on('startPath', function(position, socketId) {
 
+  // handling position output
   var newPos = {
     x: position[1],
     y: position[2]
   }
-
 
   startPath(newPos, socketId);
 
@@ -101,6 +93,7 @@ socket.on('startPath', function(position, socketId) {
 
 socket.on('continuePath', function(position, socketId) {
 
+  // handling position output
   var newPos = {
     x: position[1],
     y: position[2]
@@ -114,6 +107,7 @@ socket.on('continuePath', function(position, socketId) {
 
 socket.on('endPath', function(position, socketId) {
 
+  // handling position output
   var newPos = {
     x: position[1],
     y: position[2]
