@@ -9,4 +9,4 @@ Fire it up locally by doing:
     $ npm install
     $ npm start
 
-browse to localhost:3001 and start doodling. :)
+browse to localhost:3001 and start doodling :)
